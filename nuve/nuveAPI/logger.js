@@ -1,3 +1,4 @@
+const path = require('path')
 // eslint-disable-next-line import/no-extraneous-dependencies
 const log4js = require('log4js');
 // eslint-disable-next-line import/no-unresolved
@@ -16,7 +17,7 @@ const logJsonReplacer = (key, value) => {
 };
 
 
-log4js.configure(logFile);
+log4js.configure(path.join(__dirname, logFile));
 
 exports.logger = log4js;
 

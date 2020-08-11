@@ -19,6 +19,8 @@ utils           里面只有一个release.sh
 
 重点关注：
 ```angular2
+nuve            最上层架构
+    nuveAPI         nuve提供的api（3000端口提供服务）
 erizo_controller
 ```
 
