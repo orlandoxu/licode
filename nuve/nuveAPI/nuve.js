@@ -49,6 +49,7 @@ app.options('*', (req, res) => {
   res.send(200);
 });
 
+// 对所有请求都惊喜auth验证，类似于中间件
 app.get('*', nuveAuthenticator.authenticate);
 app.post('*', nuveAuthenticator.authenticate);
 app.put('*', nuveAuthenticator.authenticate);

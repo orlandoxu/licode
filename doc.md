@@ -24,3 +24,10 @@ nuve            最上层架构
 erizo_controller
 ```
 
+nuveAPI分析 - 感觉架构很一般，代码质量感觉也很一般
+```angular2
+1. 通讯通过token进行加解密
+2. 用mongo存储主要数据
+3. 通过rpc调用，调用nuveController(走rabbitmq)
+```
+
