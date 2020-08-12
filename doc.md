@@ -29,5 +29,16 @@ nuveAPI分析 - 感觉架构很一般，代码质量感觉也很一般
 1. 通讯通过token进行加解密
 2. 用mongo存储主要数据
 3. 通过rpc调用，调用nuveController(走rabbitmq)
+4. 所以nuveAPI需要提供服务的话，还需要通过initErizo_controller.sh来开启erizoController
 ```
 
+ErizoController研究
+```angular2
+这玩意儿，又调用了rpc去调用erizoAgent
+```
+
+erizoAgent研究
+```angular2
+erizoAgent又会去调用
+../erizoJS/erizoJS.js 启动js，看到这儿才发现，这个erizoJS是erizo的核心程序
+```

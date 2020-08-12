@@ -2,6 +2,9 @@
 
 set -e
 
+# 使用淘宝的源
+npm config set registry https://registry.npm.taobao.org
+
 SCRIPT=`pwd`/$0
 FILENAME=`basename $SCRIPT`
 PATHNAME=`dirname $SCRIPT`
