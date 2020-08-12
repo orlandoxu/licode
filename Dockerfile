@@ -11,12 +11,13 @@ WORKDIR /opt
 
 # 更新apt-get的源
 # Download latest version of the code and install dependencies
-RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list && \
+RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list && \
+    sed -i s@/security.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list && \
     apt-get clean && \
-    apt-get update && \
     apt-get update && apt-get install -y git wget curl
 
-COPY .nvmrc package.json ubuntu16lib /opt/licode/
+COPY .nvmrc package.json /opt/licode/
+COPY ubuntu16lib /opt/licode/ubuntu16lib
 
 COPY scripts/installUbuntuDeps.sh scripts/checkNvm.sh scripts/libnice-014.patch0 /opt/licode/scripts/
 

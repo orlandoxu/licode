@@ -59,12 +59,19 @@ install_nvm_node() {
   if [ -d $LIB_DIR ]; then
     export NVM_DIR=$(readlink -f "$LIB_DIR/nvm")
     if [ ! -s "$NVM_DIR/nvm.sh" ]; then
-      git clone https://github.com/creationix/nvm.git "$NVM_DIR"
-      cd "$NVM_DIR"
-      git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" origin`
+      ls -al /opt/licode/
+      ls -al /opt/licode/ubuntu16lib
+      cp -r /opt/licode/ubuntu16lib/nvm "$NVM_DIR"
+#      拒绝在网上下载，只用用本地的
+#      git clone https://github.com/creationix/nvm.git "$NVM_DIR"
+#      cd "$NVM_DIR"
+#      git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" origin`
       cd "$CURRENT_DIR"
     fi
     . $NVM_CHECK
+    # 官方会去这里下载
+    # http://nodejs.org/dist/v12.13.0/node-v12.13.0-linux-x64.tar.gz
+    # 换成淘宝试试
     NVM_NODEJS_ORG_MIRROR=http://npm.taobao.org/mirrors/node nvm install
   else
     mkdir -p $LIB_DIR
