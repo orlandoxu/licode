@@ -2,9 +2,6 @@
 
 set -e
 
-# 使用淘宝的源
-npm config set registry https://registry.npm.taobao.org
-
 SCRIPT=`pwd`/$0
 FILENAME=`basename $SCRIPT`
 PATHNAME=`dirname $SCRIPT`
@@ -78,6 +75,8 @@ install_nvm_node() {
 install_apt_deps(){
   install_nvm_node
   nvm use
+  # 使用淘宝的源
+  npm config set registry https://registry.npm.taobao.org
   npm install
   sudo apt-get update -y
   sudo apt-get install -qq python-software-properties -y
