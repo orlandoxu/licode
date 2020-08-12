@@ -65,7 +65,7 @@ install_nvm_node() {
       cd "$CURRENT_DIR"
     fi
     . $NVM_CHECK
-    nvm install
+    NVM_NODEJS_ORG_MIRROR=http://npm.taobao.org/mirrors/node nvm install
   else
     mkdir -p $LIB_DIR
     install_nvm_node
