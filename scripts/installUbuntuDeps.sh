@@ -88,11 +88,16 @@ install_apt_deps(){
   sudo apt-get update -y
   sudo apt-get install -qq python-software-properties -y
   sudo apt-get install -qq software-properties-common -y
-  sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+#  orlando modify here.
+# 因为我修改了阿里源，所以这里无法添加ppa了。先注释了试试
+#  sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   sudo apt-get update -y
   sudo apt-get install -qq git make gcc-5 g++-5 python3-pip libssl-dev cmake pkg-config liblog4cxx10-dev rabbitmq-server mongodb curl autoconf libtool automake -y
   sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 --slave /usr/bin/g++ g++ /usr/bin/g++-5
 
+# orlando add mkdir here.
+# 因为报错：chown: cannot access '/root/tmp/': No such file or directory
+  mkdir ~/tmp
   sudo chown -R `whoami` ~/.npm ~/tmp/ || true
 }
 
@@ -101,6 +106,7 @@ install_conan(){
 }
 
 download_openssl() {
+#   TODO: 这儿直接用下载好的
   OPENSSL_VERSION=$1
   OPENSSL_MAJOR="${OPENSSL_VERSION%?}"
   echo "Downloading OpenSSL from https://www.openssl.org/source/$OPENSSL_MAJOR/openssl-$OPENSSL_VERSION.tar.gz"
