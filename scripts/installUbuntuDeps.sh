@@ -103,7 +103,11 @@ install_apt_deps(){
 
 install_conan(){
 #  pip3 install conan==1.21
- pip3 install --index http://mirrors.aliyun.com/pypi/simple/ conan==1.21
+# The repository located at mirrors.aliyun.com is not a trusted or secure host
+# and is being ignored. If this repository is available via HTTPS it is recommended to use HTTPS instead,
+# otherwise you may silence this warning and allow it anyways with
+# '--trusted-host mirrors.aliyun.com'.
+ pip3 install --index http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com conan==1.21
 # 再不行试试：https://pypi.douban.com/simple
 }
 
