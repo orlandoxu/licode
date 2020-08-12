@@ -102,23 +102,26 @@ install_apt_deps(){
 }
 
 install_conan(){
-  pip3 install conan==1.21
+#  pip3 install conan==1.21
+ pip3 install --index http://mirrors.aliyun.com/pypi/simple/ conan==1.21
+# 再不行试试：https://pypi.douban.com/simple
 }
 
 download_openssl() {
-#   TODO: 这儿直接用下载好的
   OPENSSL_VERSION=$1
   OPENSSL_MAJOR="${OPENSSL_VERSION%?}"
-  echo "Downloading OpenSSL from https://www.openssl.org/source/$OPENSSL_MAJOR/openssl-$OPENSSL_VERSION.tar.gz"
-  curl -OL https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz
+# 这儿直接用下载好的
+#  echo "Downloading OpenSSL from https://www.openssl.org/source/$OPENSSL_MAJOR/openssl-$OPENSSL_VERSION.tar.gz"
+#  curl -OL https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz
+#  tar -zxvf openssl-$OPENSSL_VERSION.tar.gz
+#  DOWNLOAD_SUCCESS=$?
+#  if [ "$DOWNLOAD_SUCCESS" -eq 1 ]
+#  then
+#    echo "Downloading OpenSSL from https://www.openssl.org/source/old/$OPENSSL_MAJOR/openssl-$OPENSSL_VERSION.tar.gz"
+#    curl -OL https://www.openssl.org/source/old/$OPENSSL_MAJOR/openssl-$OPENSSL_VERSION.tar.gz
+  cp /opt/licode/ubuntu16lib/openssl-$OPENSSL_VERSION.tar.gz .
   tar -zxvf openssl-$OPENSSL_VERSION.tar.gz
-  DOWNLOAD_SUCCESS=$?
-  if [ "$DOWNLOAD_SUCCESS" -eq 1 ]
-  then
-    echo "Downloading OpenSSL from https://www.openssl.org/source/old/$OPENSSL_MAJOR/openssl-$OPENSSL_VERSION.tar.gz"
-    curl -OL https://www.openssl.org/source/old/$OPENSSL_MAJOR/openssl-$OPENSSL_VERSION.tar.gz
-    tar -zxvf openssl-$OPENSSL_VERSION.tar.gz
-  fi
+#  fi
 }
 
 install_openssl(){
@@ -145,7 +148,9 @@ install_opus(){
   [ -d $LIB_DIR ] || mkdir -p $LIB_DIR
   cd $LIB_DIR
   if [ ! -f ./opus-1.1.tar.gz ]; then
-    curl -L https://github.com/xiph/opus/archive/v1.1.tar.gz -o opus-1.1.tar.gz
+    # 这里直接拷贝源代码
+    # curl -L https://github.com/xiph/opus/archive/v1.1.tar.gz -o opus-1.1.tar.gz
+    cp -r /opt/licode/ubuntu16lib/opus-1.1.tar.gz .
     tar -zxvf opus-1.1.tar.gz
     cd opus-1.1
     ./autogen.sh
@@ -164,7 +169,9 @@ install_mediadeps(){
   if [ -d $LIB_DIR ]; then
     cd $LIB_DIR
     if [ ! -f ./v11.9.tar.gz ]; then
-      curl -O -L https://github.com/libav/libav/archive/v11.9.tar.gz
+      # curl -O -L https://github.com/libav/libav/archive/v11.9.tar.gz
+      # 这儿直接拷贝
+      cp -r /opt/licode/ubuntu16lib/v11.9.tar.gz .
       tar -zxvf v11.9.tar.gz
       cd libav-11.9
       PKG_CONFIG_PATH=${PREFIX_DIR}/lib/pkgconfig ./configure --prefix=$PREFIX_DIR --enable-shared --enable-gpl --enable-libvpx --enable-libx264 --enable-libopus --disable-doc
@@ -187,7 +194,9 @@ install_mediadeps_nogpl(){
   if [ -d $LIB_DIR ]; then
     cd $LIB_DIR
     if [ ! -f ./v11.9.tar.gz ]; then
-      curl -O -L https://github.com/libav/libav/archive/v11.9.tar.gz
+      # curl -O -L https://github.com/libav/libav/archive/v11.9.tar.gz
+      # 这儿直接拷贝
+      cp -r /opt/licode/ubuntu16lib/v11.9.tar.gz .
       tar -zxvf v11.9.tar.gz
       cd libav-11.9
       PKG_CONFIG_PATH=${PREFIX_DIR}/lib/pkgconfig ./configure --prefix=$PREFIX_DIR --enable-shared --enable-libvpx --enable-libopus --disable-doc
@@ -206,7 +215,9 @@ install_mediadeps_nogpl(){
 install_libsrtp(){
   if [ -d $LIB_DIR ]; then
     cd $LIB_DIR
-    curl -o libsrtp-2.1.0.tar.gz https://codeload.github.com/cisco/libsrtp/tar.gz/v2.1.0
+    # curl -o libsrtp-2.1.0.tar.gz https://codeload.github.com/cisco/libsrtp/tar.gz/v2.1.0
+    # 这儿直接拷贝
+    cp -r /opt/licode/ubuntu16lib/libsrtp-2.1.0.tar.gz .
     tar -zxvf libsrtp-2.1.0.tar.gz
     cd libsrtp-2.1.0
     CFLAGS="-fPIC" ./configure --enable-openssl --prefix=$PREFIX_DIR --with-openssl-dir=$PREFIX_DIR

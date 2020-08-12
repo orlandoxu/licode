@@ -4,6 +4,19 @@ FROM ubuntu:16.04
 # 1. apt-get 下载太慢
 # 2. npm换成淘宝源
 # 3. github的代码提前下载下来
+# 4. pip3使用清华的mirror：
+# 主要是因为：https://files.pythonhosted.org的时候，很可能会报错
+# 阿里云 http://mirrors.aliyun.com/pypi/simple/
+# 中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/
+# 豆瓣 http://pypi.douban.com/simple
+# Python官方 https://pypi.python.org/simple/
+# v2ex http://pypi.v2ex.com/simple/
+# 中国科学院 http://pypi.mirrors.opencas.cn/simple/
+# 清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/
+#
+#
+#
+#
 
 MAINTAINER Lynckia
 
