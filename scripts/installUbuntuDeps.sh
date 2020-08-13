@@ -104,7 +104,6 @@ install_apt_deps(){
 install_conan(){
 #  pip3 install conan==1.21
  pip3 install --index http://mirrors.aliyun.com/pypi/simple/ conan==1.21
-# 再不行试试：https://pypi.douban.com/simple
 }
 
 download_openssl() {
