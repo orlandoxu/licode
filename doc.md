@@ -42,3 +42,5 @@ erizoAgent研究
 erizoAgent又会去调用
 ../erizoJS/erizoJS.js 启动js，看到这儿才发现，这个erizoJS是erizo的核心程序
 ```
+
+
