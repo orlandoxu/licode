@@ -1,3 +1,5 @@
+# 放弃抵抗，放弃使用licode!!!
+# 阅读licode源码发现代码写太烂了，放弃使用licode，换方案了
 # Licode
 
 An Open Source WebRTC Communications Platform.
